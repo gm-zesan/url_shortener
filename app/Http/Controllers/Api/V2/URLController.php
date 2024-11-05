@@ -27,4 +27,9 @@ class URLController extends Controller
         $urls = $request->user()->urls;
         return UrlResource::collection($urls);
     }
+
+    public function redirect($shortUrl){
+        $longUrl = $this->urlShortenerService->incrementVisitCount($shortUrl);
+        return redirect($longUrl);
+    }
 }
